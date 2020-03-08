@@ -13,6 +13,14 @@ screen=pygame.display.set_mode((screen_width,screen_height))
 background_image=pygame.image.load('road.png').convert()
 background_image1=pygame.image.load('game_sprite.png').convert_alpha()
 #background_image2=pygame.image.load('enemy.png').convert_alpha()
+def movebackground(x,y,screen,background_image):
+	rel_y=y%screen_height
+	#print (rel_y)
+	screen.blit(background_image,(x,rel_y-screen_height))
+	if rel_y<screen_height:
+		screen.blit(background_image,(x,rel_y))
+	#print('rel_y-screen_height{}'.format(rel_y-screen_height))
+	y=y+1
 running=True
 while running:
 	for event in pygame.event.get():
@@ -30,13 +38,6 @@ while running:
 
 		if event.type==pygame.KEYUP:
 			pass
-	rel_y=y%screen_height
-	print (rel_y)
-	screen.blit(background_image,(x,rel_y-screen_height))
-	if rel_y<screen_height:
-		screen.blit(background_image,(x,rel_y))
-	print('rel_y-screen_height{}'.format(rel_y-screen_height))
-	y=y+1
 	player_x=flag*lane_width-(lane_width+player_width)/2
 	screen.blit(background_image1,(player_x,player_y))
 	#print (y)
